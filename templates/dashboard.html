@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Dashboard</h1>
+<div class="grid">
+    <div class="stat"><span>Customers</span><b>{{ customers }}</b></div>
+    <div class="stat"><span>Accounts</span><b>{{ accounts }}</b></div>
+    <div class="stat"><span>Total Balance</span><b>₹{{ "%.2f"|format(balance) }}</b></div>
+    <div class="stat"><span>Deposits</span><b>₹{{ "%.2f"|format(deposits) }}</b></div>
+    <div class="stat"><span>Withdrawals</span><b>₹{{ "%.2f"|format(withdrawals) }}</b></div>
+</div>
+
+<div class="card">
+    <h2>Financial Overview Chart</h2>
+    <canvas id="overviewChart" style="max-height: 250px;"></canvas>
+</div>
+
+<div class="card">
+    <h2>Recent Transactions</h2>
+    <table>
+        <tr><th>Date</th><th>Customer</th><th>Account</th><th>Type</th><th>Amount</th><th>Status</th></tr>
+        {% for t in recent %}
+        <tr>
+            <td>{{t.created_at}}</td>
+            <td>{{t.name}}</td>
+            <td>{{t.account_no}}</td>
+            <td>{{t.txn_type}}</td>
+            <td>₹{{"%.2f"|format(t.amount)}}</td>
+            <td>{% if t.is_fraud == 1 %}<span style="color:red; font-weight:bold;">Flagged Fraud</span>{% else %}<span style="color:green;">Normal</span>{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% if segments %}
+<div class="card">
+    <h2>Customer Machine Learning Segments (K-Means)</h2>
+    <table>
+        <tr><th>Customer</th><th>Income</th><th>Transactions</th><th>Balance</th><th>Cluster Segment</th></tr>
+        {% for s in segments %}
+        <tr>
+            <td>{{s.name}}</td>
+            <td>₹{{"%.0f"|format(s.income or 0)}}</td>
+            <td>{{s.txn_count or 0}}</td>
+            <td>₹{{"%.2f"|format(s.balance or 0)}}</td>
+            <td>Cluster {{s.segment}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('overviewChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Deposits', 'Withdrawals'],
+            datasets: [{
+                label: 'Amount in INR',
+                data: [{{ deposits }}, {{ withdrawals }}],
+                backgroundColor: ['#28a745', '#dc3545']
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+</script>
+{% endblock %}

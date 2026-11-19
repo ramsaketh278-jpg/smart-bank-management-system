@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Advanced Customer Analytics</h1>
+<div class="card">
+    <h2>Customer Wealth & Income Distribution</h2>
+    <canvas id="analyticsChart" style="max-height: 300px;"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const labels = {{ chart_labels | safe }};
+    const balances = {{ chart_balances | safe }};
+    const incomes = {{ chart_incomes | safe }};
+
+    const ctx = document.getElementById('analyticsChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Account Balance (₹)',
+                    data: balances,
+                    borderColor: '#007bff',
+                    backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                    fill: true,
+                    tension: 0.1
+                },
+                {
+                    label: 'Annual Income (₹)',
+                    data: incomes,
+                    borderColor: '#ffc107',
+                    backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                    fill: true,
+                    tension: 0.1
+                }
+            ]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,28 @@
+*{box-sizing:border-box}
+body{font-family:Arial,sans-serif;margin:0;background:#f4f7fb;color:#17202a}
+nav{background:#17324d;color:#fff;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.brand{font-size:23px;font-weight:700}.links{display:flex;gap:18px;flex-wrap:wrap}.links a{color:#fff;text-decoration:none}
+.links a:hover,.link:hover{opacity:.75}
+main{max-width:1150px;margin:28px auto;padding:0 16px}
+h1{margin-top:0}.muted{color:#667085}
+.card{background:#fff;padding:22px;margin:18px 0;border-radius:12px;box-shadow:0 3px 14px #00000010}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px}
+.stat{background:#fff;padding:20px;border-radius:12px;box-shadow:0 3px 14px #00000010}
+.stat span{display:block;color:#667085}.stat b{font-size:24px;display:block;margin-top:8px}
+label{display:block;margin-top:12px;font-weight:700}
+input,select{padding:10px;margin:5px 0;width:100%;border:1px solid #ccd3dc;border-radius:7px;background:#fff}
+button,.button{background:#17324d;color:#fff;border:0;padding:10px 15px;border-radius:7px;text-decoration:none;display:inline-block;margin-top:10px;cursor:pointer}
+button:hover,.button:hover{opacity:.9}
+table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px solid #e5e7eb;text-align:left;vertical-align:middle}
+.table-wrap{overflow-x:auto}.flash{background:#fff3cd;padding:12px;border-radius:8px;margin-bottom:12px}
+.row,.page-head{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.inline-form{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.inline-form input,.inline-form select{width:auto;min-width:130px}
+.transfer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;align-items:end}
+.transfer-grid label{margin-top:0}
+.login{max-width:410px;margin:70px auto}
+.form-card{max-width:600px;margin-left:auto;margin-right:auto}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+.info-grid div{display:flex;flex-direction:column;gap:5px}.info-grid span{color:#667085}
+.badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#e8eef5}
+.note{border-left:4px solid #17324d}
+@media(max-width:650px){nav{padding:14px 4%}.links{gap:10px}main{margin-top:18px}.card{padding:16px}}

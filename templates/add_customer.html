@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card form-card">
+<h1>Add Customer</h1>
+<form method="post">
+<label>Name</label><input name="name" required>
+<label>Email</label><input type="email" name="email" required>
+<label>Phone</label><input name="phone">
+<label>City</label><input name="city">
+<label>Monthly Income</label><input type="number" min="0" step="0.01" name="income">
+<button>Add Customer</button>
+</form>
+</div>
+{% endblock %}

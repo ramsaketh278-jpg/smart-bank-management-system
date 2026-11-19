@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row"><h1>Customers</h1><a class="button" href="{{url_for('add_customer')}}">+ Add Customer</a></div>
+<div class="card"><div class="table-wrap"><table>
+<tr><th>Name</th><th>Email</th><th>Phone</th><th>Accounts</th><th>Balance</th><th>Action</th></tr>
+{% for c in customers %}
+<tr><td>{{c.name}}</td><td>{{c.email}}</td><td>{{c.phone}}</td><td>{{c.account_count}}</td><td>₹{{"%.2f"|format(c.total_balance)}}</td><td><a class="link" href="{{url_for('customer_detail', customer_id=c.id)}}">Open</a></td></tr>
+{% else %}<tr><td colspan="6" class="muted">No customers yet.</td></tr>{% endfor %}
+</table></div></div>
+{% endblock %}
