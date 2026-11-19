@@ -14,9 +14,12 @@ from sklearn.ensemble import IsolationForest
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(32)
+app.secret_key = os.environ.get("SECRET_KEY")
 
-DB = "bank.db"
+if not app.secret_key:
+    raise RuntimeError("SECRET_KEY environment variable is required")
+
+DB = os.environ.get("DATABASE_PATH", "bank.db")
 
 
 def get_db():
@@ -472,7 +475,7 @@ def analytics():
         chart_incomes=chart_incomes
     )
 
+init_db()
 
 if __name__ == "__main__":
-    init_db()
     app.run(debug=False)
