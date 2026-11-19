@@ -14,9 +14,7 @@ B.Sc. Data Science final-year project using Python, Flask, SQLite, Pandas and Sc
 - Basic fraud-risk flagging rules
 - SQLite database
 
-## Demo login
-Username: `admin`
-Password: `admin123`
+
 
 ## Run on Windows
 ```text
